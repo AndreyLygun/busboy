@@ -1,0 +1,282 @@
+
+/* В данном селекторе мы задаем ширину, высоту, обводку, позиционирование, фоновый цвет, цвет и размер теней */
+
+
+.box11{
+	min-height: 150px;
+	padding: 0 0 1px 0;
+	position:relative;
+	background: #f3f3f3;
+	background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#eee), to(#fff), color-stop(.1,#eee));
+	background: -moz-linear-gradient(0 0 270deg, #eee, #eee 10%, #fff);
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	-webkit-border-bottom-right-radius: 60px 60px;
+	-moz-border-radius-bottomright: 60px 60px;
+	border-bottom-right-radius: 60px 60px;
+	-webkit-box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: -1px 2px 2px rgba(0,0,0,0.2);
+	box-shadow: -1px 2px 2px rgba(0,0,0,0.2);
+}
+
+
+
+/* В данном псевдо классе создаем нижний загиб */
+
+.box11:before{
+	content:'';
+	width: 25px;
+	height: 20px;
+	background: white;
+	position: absolute;
+	bottom:0; right:0;
+	background:#fff;
+	background: -webkit-gradient(linear, 0% 20%, 50% 40%, from(#fff), to( #eee), color-stop(.1,#fff));
+	background: -moz-linear-gradient(0 50%, #fff, #fff 10%, #eee);
+	-webkit-border-bottom-right-radius: 30px;
+	-moz-border-radius-bottomright: 30px;
+	border-bottom-right-radius: 30px;
+	-webkit-box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: -2px -2px 5px rgba(0,0,0,0.3);
+	box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.3);
+	-webkit-transform: rotate(-20deg)
+						skew(-40deg,-3deg)
+						translate(-13px,-13px);
+						transform: rotate(-20deg)
+						skew(-40deg,-3deg)
+						translate(-13px,-13px);
+	-moz-transform: rotate(-20deg)
+						skew(-40deg,-3deg)
+						translate(-13px,-13px);
+						transform: rotate(-20deg)
+						skew(-40deg,-3deg)
+						translate(-13px,-13px);
+	-o-transform: rotate(-20deg)
+						skew(-40deg,-3deg)
+						translate(-13px,-13px);
+						transform: rotate(-20deg)
+						skew(-40deg,-3deg)
+						translate(-13px,-13px);
+	transform: rotate(-20deg)
+						skew(-40deg,-3deg)
+						translate(-13px,-13px);
+						transform: rotate(-20deg)
+						skew(-40deg,-3deg)
+						translate(-13px,-13px);
+}
+
+
+
+/* Это тень загиба */
+
+.box11:after{
+	content: '';
+	z-index: -1;
+	width: 100px;
+	height: 100px;
+	position:absolute;
+	bottom:0;
+	right:0;
+	background: rgba(0, 0, 0, 0.2);
+	display: inline-block;
+	-webkit-box-shadow: 20px 20px 8px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 20px 20px 17px rgba(0,0,0,0.2);
+	box-shadow: 20px 20px 17px rgba(0,0,0,0.2);
+	-webkit-transform: rotate(0deg)
+						translate(-45px,-20px)
+					   	skew(20deg);
+	-moz-transform: rotate(0deg)
+						translate(-40px,-17px)
+					   	skew(20deg);
+	-o-transform: rotate(0deg)
+						translate(-40px,-17px)
+					   	skew(20deg);
+	transform: rotate(0deg)
+						translate(-40px,-17px)
+					   	skew(20deg);
+}
+
+
+/* Это верхняя ленточка на рамке */
+
+.box11_tape{
+	position:absolute;
+	top:-25px; left: 30%;
+	width: 130px;
+	height: 40px;
+	background:#ccc;
+	background: -webkit-gradient(linear, 555% 20%, 0% 92%, from(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.0)), color-stop(.1,rgba(0, 0, 0, 0.2)));
+	background: -moz-linear-gradient(555% 0 180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.2) 10%, rgba(0,0,0,0.0));
+	border-left: 1px dashed rgba(0, 0, 0, 0.1);
+	border-right: 1px dashed rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+html, body {
+  position: relative;
+	min-height: 100%;
+}
+
+.carousel-control-next, .carousel-control-prev {
+	width: 80px
+}
+
+.carousel-inner {
+	padding-left: 20px; padding-right: 20px
+}
+
+.carousel-indicators li {
+	background-color: #888
+}
+
+blockquote:before, blockquote:after {background:transparent;}
+
+blockquote	{
+	line-height:normal;
+	font-size:16px;
+	color:#666;
+	padding:12px 0 0 44px;
+	text-align:left;
+	font-style:italic;
+	margin:10px 30px 20px;
+	position:relative
+}
+blockquote:before{color:#ccc;content:'\201C'; line-height:1;font-size:85px;left:-5px;position:absolute;top:-5px;font-family:Georgia,serif;}
+
+
+.menu-editor ul {
+    padding: 0px;
+    list-style: none;
+}
+
+.ui-sortable-helper {
+    border: none;
+}
+
+.wait {
+    cursor: wait;
+}
+
+span[data-editable], span[contenteditable="true"] {
+		margin-left: -7px;
+		padding-left: 7px;
+		padding-right: 7px;
+}
+
+span[contenteditable="true"] {
+    border: 1px solid gray;
+}
+
+
+
+.dish-list .dish {
+    margin-top: 4px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid gray;
+}
+
+.dish-list :last-child {
+	border-bottom: none;
+}
+
+.compressed-line-height {
+	line-height: 1.25em;
+}
+
+.dish-description p{
+	margin-top: 1px;
+	margin-bottom: 0px;
+	padding: 0px;
+
+}
+
+div.input_preview {
+	border: 1px solid lightgray;
+	height: 100%;
+}
+
+
+div.input_preview input {
+	opacity:0;
+	filter:alpha(opacity:0);
+	cursor:pointer;
+	padding:0px;
+	margin:0px;
+	border:none;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #777;
+    border-bottom: 16px solid #777;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+		position: fixed;
+		bottom: 50%;
+		left: 50%;
+		display: none;
+		z-index: 3000;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+img[src='/'] {
+	display: none
+}
+
+.dish_card p {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.smartphone {
+	padding: 0px 10px 50px 10px;
+	border: 1px solid gray;
+	border-top: none;
+	background-color: black;
+	border-radius: 0 0 15px 15px;
+	max-width: 500px
+}
+
+.smartphone .carousel-indicators {
+	position: relative;
+    justify-content: center;
+    padding-left: 0;
+    margin-right: 0;
+    margin-left: 0;
+    list-style: none;
+}
+
+.smartphone .carousel-indicators p {
+	filter: blur(0.06em);
+}
+
+
+.smartphone .carousel-indicators p.active{
+	filter: brightness(120%) blur(0px);
+	-webkit-box-shadow: 0px 0px 20px 2px rgba(255, 255, 255, 0.75);
+	-moz-box-shadow:    0px 0px 20px 2px rgba(255, 255, 255, 0.75);
+	box-shadow:         0px 0px 20px 2px rgba(255, 255, 255, 0.75);
+}
+
+
+.adv main {
+	min-height: calc(100vh - 200px);
+}
+
+/* Указатели мыши */
+.mouse-pointer {cursor: pointer}
+.mouse-waite {cursor: wait}
