@@ -35,7 +35,6 @@
         @include('cabinet.chunk.form-textarea', ['key'=>'pickupTerm', 'label'=>'Условия самовывоза', 'value'=>$company->deliveryTerm, 'rows'=>'3', 'class'=>$company->hasPickup?'':'d-none'])
         <script>
             document.getElementById('hasDelivery').onchange = function () {
-                alert('this.checked');
                 if (this.checked) {
                     $('#deliveryTerm_container').show(500);
                 } else {

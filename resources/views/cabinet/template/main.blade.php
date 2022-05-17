@@ -3,14 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Busboy.ru</title>
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link href="/css/tabler.min.css?1652048814" rel="stylesheet"/>
+    <link href="/css/tabler-flags.min.css?1652048814" rel="stylesheet"/>
+    <link href="/css/tabler-payments.min.css?1652048814" rel="stylesheet"/>
+    <link href="/css/tabler-vendors.min.css?1652048814" rel="stylesheet"/>
+    <li-nk href="/css/demo.min.css?1652048814" rel="stylesheet"/>
+
+
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/style2.css" rel="stylesheet">
-    <link href="/css/bootstrap-icons.css" rel="stylesheet" >
+
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/jquery-3.6.0.min.js"></script>
     <script src="/js/jquery-ui.min.js"></script>
     <script src="/js/script.js"></script>
+
+
 
 </head>
 <body>
