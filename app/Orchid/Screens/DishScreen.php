@@ -4,6 +4,7 @@ namespace App\Orchid\Screens;
 
 use App\Models\Category;
 use App\Models\Dish;
+use http\Client\Response;
 use Orchid\Screen\Actions\Button;
 
 use Orchid\Screen\Fields\CheckBox;
@@ -13,6 +14,7 @@ use Orchid\Screen\Fields\Matrix;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Sight;
 use Orchid\Support\Facades\Layout;
 
 
@@ -24,12 +26,19 @@ class DishScreen extends Screen
      *
      * @return array
      */
-    protected $dish;
+    public $dish;
 
     public function query(): iterable
     {
-        $this->dish = Dish::with('category')->findOrFail(request('id'))->toArray();
-        return $this->dish;
+        if (request()->has('id')) {
+            $this->dish = Dish::with('category')->findOrFail(request('id'));
+        } elseif (request()->has('category')) {
+            $this->dish = new Dish();
+            $this->dish->category_id = request('category');
+        } else {
+            return Response::denyWithStatus(404);
+        }
+        return [$this->dish];
     }
 
     /**
@@ -55,15 +64,16 @@ class DishScreen extends Screen
     }
 
     public function Save() {
-        $validated = request()->validate([
-            'id'=>'',
+        $validated = request('dish')->validate([
+            'dish.id'=>'',
             'name'=>'required',
+            'category_id' => '',
             'shortname'=>'',
             'description'=>'',
             'hide'=>'numeric',
             'article'=>'',
             'photo'=>'',
-            'options'=>'',
+//            'options'=>'',
             'price'=>'numeric',
             'out_price'=>'numeric',
             'change_price'=>'',
@@ -77,14 +87,13 @@ class DishScreen extends Screen
             'special'=>'boolean',
         ]);
         $id = $validated['id'];
-//        dd($validated['options']);
-        $dish = Dish::findOrNew($id);
-//        if ($id) {
-//            $dish = Dish::find($id);
-//        } else {
-//            $dish = new Dish();
-//        }
-        $dish->update($validated);
+        if ($id) {
+            $dish = Dish::findOrFail($id);
+            $dish->update($validated);
+        } else {
+            $dish = Dish::create($validated);
+            $dish->save();
+        }
     }
 
     /**
@@ -94,7 +103,7 @@ class DishScreen extends Screen
      */
     public function layout(): iterable
     {
-        $description_area = '';
+        dd($this->dish);
         return [
             Layout::rows([
                 Input::make('id')->hidden()->withoutFormType(),

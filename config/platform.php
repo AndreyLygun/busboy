@@ -110,7 +110,7 @@ return [
 
     'resource' => [
         'stylesheets' => ['/my.css'],
-        'scripts'     => [],
+        'scripts'     => ['/js/jquery-3.6.3.min.js'],
     ],
 
     /*

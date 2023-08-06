@@ -16,7 +16,6 @@ trait Multitenant
             $builder->where('company_id', '=', session('company_id'));
         });
         static::creating(function($model) {
-//            $model->company_id = $company_id;
             if ($company_id = session('company_id')) {
                 $model->company_id = $company_id;
             }

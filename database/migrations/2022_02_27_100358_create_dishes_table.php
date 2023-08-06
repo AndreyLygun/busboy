@@ -18,7 +18,7 @@ class CreateDishesTable extends Migration
             $table->string('company_id')->index();
             $table->foreignId('category_id')->constrained();
 
-            $table->string('name', 255)->comment('Полное название');
+            $table->string('name', 255)->default('')->comment('Полное название');
             $table->string('shortname', 255)->comment('Краткое название')->nullable();
             $table->text('description')->comment('Описание')->nullable();
             $table->string('alias', 255)->comment('url')->default('');

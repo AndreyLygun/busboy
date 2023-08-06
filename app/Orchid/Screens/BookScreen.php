@@ -6,10 +6,12 @@ use App\Models\Category;
 use App\Models\Book;
 
 
+use App\Models\Dish;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Sight;
 use Orchid\Support\Facades\Layout;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\MenuExport;
@@ -24,10 +26,7 @@ class BookScreen extends Screen
      */
     public function query(): iterable
     {
-        $book_id = request('id');
-        if (!$book_id) {
-            $book_id = Book::first()->id;
-        }
+        $book_id = request('id')??Book::first()->id;
         $d = Category::with('Dishes')->where('book_id', $book_id)->orderBy('order')->get()->toArray();
         return ['categories' => $d];
     }
@@ -50,9 +49,11 @@ class BookScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::view('admin.menu', ['menu' => $this->query()])
+            Layout::view('admin.menu', ['menu' => $this->query()]),
+
         ];
     }
+
 
 
     /**
@@ -69,14 +70,19 @@ class BookScreen extends Screen
                     Link::make('Экспорт в Excel')->route('exportmenu'),
                 ]
             ),
-            Button::make('Удалить')->confirm("Вы уверены, что хотите удалить меню?")->method('delete', ['id' => request('id')]),
+            Button::make('Удалить')->confirm("Вы уверены, что хотите удалить меню?")->method('deleteBook', ['id' => request('id')]),
             Button::make('Добавить категорию')
         ];
     }
-    public function delete() {
-        if ($b = Book::find(request('id'))) {
-            $b->delete();
-            Toast::success('Меню удалено');
-        }
+
+    public function deleteDish($id) {
+        Dish::findOrFail($id)->delete();
+    }
+
+    public function deleteBook($id) {
+        $b = Book::findOrFail($id)->withCount('categories');
+        dd($b->categories_count);
+        $b->delete();
+        Toast::success('Меню удалено');
     }
 }

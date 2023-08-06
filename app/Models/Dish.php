@@ -5,11 +5,13 @@ namespace App\Models;
 use App\Busboy\Multitenant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Screen\AsSource;
 
 class Dish extends Model
 {
     use HasFactory;
     use Multitenant;
+    use AsSource;
 
     const FIELDS = [
         'id'=>'ID',
@@ -34,6 +36,11 @@ class Dish extends Model
     ];
 
     protected $guarded=['company_id'];
+
+    protected $casts = [
+        'options' => 'array'
+    ];
+
     public function category() {
         return $this->belongsTo(Category::class);
     }
