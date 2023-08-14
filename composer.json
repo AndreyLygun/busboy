@@ -12,7 +12,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1",
-        "orchid/platform": "*"
+        "orchid/platform": "*",
+        "twbs/bootstrap": "5.3.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

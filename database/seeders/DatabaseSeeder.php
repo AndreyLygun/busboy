@@ -22,28 +22,27 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
 
-    protected function createRestaurant($companyId, $staff, $desks, $menuFile, $additionalMenuFile='') {
+    protected function createRestaurant($companyId, $staff, $desks, $books) {
         session(['company_id'=>$companyId]);
         $user = User::all()->where('name', $companyId)->first();
+
         Company::FirstOrCreate(['id'=>$companyId], ['name'=>$companyId, 'user_id' => $user->id]);
         $phone = 79261906286;
         foreach ($staff as $name) {
-            Staff::FirstOrCreate(['name'=>$name], ['phone' => $phone++, 'company_id'=>'demo']);
+            Staff::FirstOrCreate(['name'=>$name], ['phone' => $phone++, 'company_id'=>$companyId]);
         }
+
         foreach ($desks as $desk) {
             $desk = Desk::FirstOrCreate(['company_id' => $companyId, 'name' => $desk]);
-            for($i=0; $i<3; $i++) {
-                $code = rand(0, 99999999);
-                Qr::FirstOrCreate(['code'=>$code], ['desk_id'=>$desk->id]);
-            }
+            Qr::FirstOrCreate(['code'=>rand(0, 99999999)], ['desk_id'=>$desk->id]);
+            Qr::FirstOrCreate(['code'=>rand(0, 99999999)], ['desk_id'=>$desk->id]);
+            Qr::FirstOrCreate(['code'=>rand(0, 99999999)], ['desk_id'=>$desk->id]);
         }
 
-        $menuImport = new ExcelMenu();
-        $dishCount = $menuImport->import($menuFile, 'Основное');
-
-        if ($additionalMenuFile) {
+        $dishCount = 0;
+        foreach ($books as $book) {
             $menuImport = new ExcelMenu();
-            $dishCount += $menuImport->import($additionalMenuFile, 'Напитки');
+            $dishCount += $menuImport->import($book, 'Основное');
         }
 
         echo "Создано меню из $dishCount блюд\n";
@@ -52,16 +51,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->createRestaurant(
-            'admin',
+            'busboy',
             ['Андрей', 'Лена', 'Наташа', 'Вася'],
             ['Первый', 'Второй', 'Третий', 'Четвёртый', 'Пятый', 'Шестой'],
-            'menu-main.xls', 'menu-drinks.xls'
+            ['menu-main.admin.xls', 'menu-drinks.admin.xls']
         );
         $this->createRestaurant(
-            'test',
-            ['Андрей1', 'Лена1', 'Наташа1', 'Вася1'],
+            'demo',
+            ['Петя', 'Ира', 'Вика', 'Федя'],
             ['1', '2', '3', '4', '5', '6'],
-            'menu-main.xls', 'menu-drinks.xls'
+            ['menu-main.demo.xls', 'menu-drinks.demo.xls']
         );
     }
 }
