@@ -50,7 +50,6 @@ class BookScreen extends Screen
     {
         return [
             Layout::view('admin.menu', ['menu' => $this->query()]),
-
         ];
     }
 

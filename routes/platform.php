@@ -23,6 +23,7 @@ use App\Orchid\Screens\StaffScreen;
 use App\Orchid\Screens\BookScreen;
 use App\Orchid\Screens\DishScreen;
 use App\Orchid\Screens\EditBookScreen;
+use App\Models\Dish;
 
 /*
 |--------------------------------------------------------------------------
